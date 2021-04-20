@@ -14,56 +14,141 @@
             font-style: normal;
         }
 
-        nav {
-            display: flex;
-            position: fixed;
-            top:0;
-            width: 100%;
-            background-color: white;
-            overflow: auto;
-            height: auto;
-        }
-
-        .left-links {
-            flex:1 1 200px;
-        }
-
-        .links {
+        nav, footer {
             display: inline-block; 
-            text-align: center; 
-            padding: 12px; 
-            color: black;
-            font-size: 12px; 
-            font-family: Arial, Helvetica, sans-serif;
+            flex-direction: row;  
+            position: relative; 
+            width: 100%; 
+            margin: 0; 
         }
 
-        .links:hover {
+        a { 
+            float: left; 
+            text-align: center; 
+            padding: 8px; 
+            font-size: 14px; 
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none; 
+            color: black;  
+        }
+
+        a:hover {
             text-decoration: underline;
         }
 
-        .profile-picture {
+        .right-header { 
+            float: right;   
+            padding-left: 100px;
+            padding-right: 0;
+        }
+
+        #profile-picture { 
+            border-radius: 50%; 
+            width: 35px; 
+        }
+
+        #main-logo {
+            width: 300px;
+            position: relative; 
+            left: 30%; 
+        }
+
+        footer {  
+            text-align: center;  
+            color: gray;
+            background-color: rgb(240, 238, 238); 
+            position: fixed;
+            bottom: 0%; 
+            width: 100%; 
+            height: fit-content; 
 
         }
+
+        .left-footer { 
+            grid-area: left;  
+
+        }
+
+        .right-footer {
+            float: right; 
+            padding-right: 0; 
+            margin-right: 10px;
+            grid-area: right; 
+        }
+
+        .middle-footer{
+            float: none;  
+            position: absolute; 
+            top: 50%; 
+            left: 50%;  
+            transform: translate(-50%, -50%); 
+            grid-area: middle; 
+        }
+
+        @media screen and (max-width: 800px) { 
+
+            footer { 
+                display: grid; 
+                grid-template-columns: auto auto;
+                grid-template-rows: auto auto; 
+                grid-gap: 30px; 
+                grid-template-areas: 
+                    "middle middle"
+                    "left right";
+                padding: 20px; 
+            }
+
+            .middle-footer a{ 
+                position: relative; 
+                bottom: 0;
+                left: 0;
+                transform: none; 
+            }
+        }
+
+        @media screen and (max-width: 600px) { 
+
+            footer { 
+                display: grid; 
+                 grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto; 
+                grid-gap: 20px; 
+                grid-template-areas: 
+                    "middle"
+                    "left"
+                    "right";
+                padding: 20px;  
+                float:none; 
+
+}
+
+            .middle-footer a{ 
+                position: relative; 
+                bottom: 0;
+                left: 0;
+                transform: none; 
+ 
+}
+}
+
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="left-links">
-            <a href="#About" class="links">About</a>
-            <a href="#Store" class="links">Store</a>
-        </div>
-        
-        <div class="right-links">
-            <a href="#Gmail" class="links">Gmail</a>
-            <a href="#Images" class="links">Images</a>
-            <span class="material-icons">apps</span> 
-            <img src="https://lh3.googleusercontent.com/ogw/ADGmqu8_gJOGeg1oN3TFIhYWL_5t0Yib-MRvXdq_hvnJcw=s64-c-mo" class=" profile-picture"> 
-        </div>
+    <nav class="header">
+            <a href="#About" id="about">About</a>
+            <a href="#Store">Store</a> 
+ 
+        <div class="right-header">
+            <a href="#Gmail">Gmail</a>
+            <a href="#Images">Images</a>
+            <a href="#Apps"><span class="material-icons">apps</span></a>
+            <a href="#Account"></a><img src="https://lh3.googleusercontent.com/ogw/ADGmqu8_gJOGeg1oN3TFIhYWL_5t0Yib-MRvXdq_hvnJcw=s64-c-mo" id="profile-picture"></a>
+        </div>   
 
     </nav>
     
-    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="google logo" class="main-logo">
+    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="google logo" id="main-logo">
 
     <form>
         <input type="text" placeholder="search">
@@ -72,12 +157,21 @@
     </form>
 
     <footer>
-        <h3 class="left-footer"> Advertising </h3>
-        <h3 class="left-footer"> Business </h3>
-        <h3 class="left-footer"> How Search works</h3>
-        <h3 class="right-footer"> Privacy </h3>
-        <h3 class="right-footer"> Terms</h3>
-        <h3 class="right-footer"> Settings</h3>
+        <div class="left-footer">
+            <a href="#Ad"> Advertising </a>
+            <a href="#Business"> Business </a>
+            <a href="#How-Search-Works"> How Search works</a>
+        </div>
+
+        <div class="middle-footer">
+            <a href="Carbon-neutral"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAYCAMAAAAiV0Z6AAAAPFBMVEVLoEN0wU6CzFKCzFKCzFKCzFKCzFJSo0MSczNDmkCCzFJPoUMTczNdr0gmgziCzFITczMTczMTczMTczPh00jOAAAAFHRSTlPF/+bIsms8Ad///hX+//5/tXw7aMEAx10AAACaSURBVHgBbc4HDoRQCATQ33tbvf9dF9QxaCT9UQaltLHOh/golXKhMs5Xqa0xU1lyoa2fXFyQOsDG38qsLy4TaV+sFislovyhPzLJJrBu6eQOtpW0LjbJkzTuTDLRVNKa3uxJI+VdiRqXSeu6GW+Qxi29eLIi8H7EsYrT42BD+mQtNO5JMjRuC4lSY8V4hsLX0egGijvUSEP9AbylEsOkeCgWAAAAAElFTkSuQmCC"> Carbon neutral since 2007</a>
+        </div>
+
+        <div class="right-footer">
+            <a href="#Privacy"> Privacy </a>
+            <a href="#Terms"> Terms</a>
+            <a href="#Settings"> Settings</a>
+        </div>
     </footer> 
 </body> 
 
